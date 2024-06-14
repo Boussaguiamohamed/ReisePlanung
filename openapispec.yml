@@ -1,0 +1,286 @@
+openapi: 3.1.0
+x-stoplight:
+  id: v6hpjqo0kzabk
+info:
+  title: open-api-fwe
+  version: '1.0'
+servers:
+  - url: 'http://localhost:4000'
+paths:
+  /reise:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reise'
+              examples:
+                example-1:
+                  value:
+                    - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      name: string
+                      beschreibung: string
+                      teilnehmer: string
+                      createdAt: '2019-08-24T14:15:22Z'
+                      updatedAt: '2019-08-24T14:15:22Z'
+      operationId: get-reise
+      security:
+        - 'Bearer ': []
+    post:
+      summary: ''
+      operationId: post-reise
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reise'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                beschreibung:
+                  type: string
+                teilnehmer:
+                  type: string
+              required:
+                - name
+                - beschreibung
+                - teilnehmer
+  '/reise/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: ''
+      operationId: delete-reise-id
+      responses:
+        '204':
+          description: No Content
+      description: ''
+    put:
+      summary: ''
+      operationId: put-reise-id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                beschreibung:
+                  type: string
+                teilnehmer:
+                  type: string
+      security:
+        - 'Bearer ': []
+  /reiseziel:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reiseziel'
+              examples:
+                example-1:
+                  value:
+                    - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      name: string
+                      beschreibung: string
+                      datumvon: string
+                      datumbis: string
+                      activities: string
+                      createdAt: '2019-08-24T14:15:22Z'
+                      updatedAt: '2019-08-24T14:15:22Z'
+      operationId: get-reiseziel
+      security:
+        - 'Bearer ': []
+    post:
+      summary: ''
+      operationId: post-reiseziel
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reiseziel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                beschreibung:
+                  type: string
+                datumvon:
+                  type: string
+                datumbis:
+                  type: string
+                activities:
+                  type: string
+              required:
+                - name
+                - beschreibung
+                - datumvon
+                - datumbis
+                - activities
+                    
+  '/reiseziel/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: ''
+      operationId: delete-reiseziel-id
+      responses:
+        '204':
+          description: No Content
+      description: ''
+    put:
+      summary: ''
+      operationId: put-reiseziel-id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                beschreibung:
+                  type: string
+                datumvon:
+                  type: string
+                datumbis:
+                  type: string
+                activities:
+                  type: string
+      security:
+        - 'Bearer ': []
+components:
+  schemas:
+    Reise:
+      title: Reise
+      x-stoplight:
+        id: j11n079gr0cfo
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        beschreibung:
+          type: string
+        teilnehmer:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        reiseziel:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                 type: string
+              beschreibung:
+                 type: string
+              datumvon:
+                 type: string
+              datumbis:
+                 type: string
+              activities:
+                 type: string
+      required:
+        - id
+        - name
+        - beschreibung
+        - teilnehmer
+        - createdAt
+        - updatedAt
+    Reiseziel:
+      title: Reiseziel
+      x-stoplight:
+        id: j00n179gr1cfo
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        beschreibung:
+          type: string
+        datumvon:
+          type: string
+        datumbis:
+          type: string
+        activities:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        reisen:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              beschreibung:
+                type: string
+              teilnehmer:
+                type: string
+      required:
+        - id
+        - name
+        - beschreibung
+        - datumvon
+        - datumbis
+        - activities
+        - createdAt
+        - updatedAt
+  securitySchemes:
+    'Bearer ':
+      type: http
+      scheme: bearer
